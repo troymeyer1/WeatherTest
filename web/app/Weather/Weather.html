@@ -1,0 +1,111 @@
+<style>
+	body
+	{
+		font-family: verdana;
+		font-size: 12px;
+	}
+
+	.wrapper
+	{
+		padding-left: 10px;
+		padding-top: 10px;
+	}
+	
+	.userInput {
+		margin-bottom: 20px;
+	}
+	
+	.currently {
+		font-weight: bold;
+	}
+	
+	.instructions {
+		font-style: italic;
+	}
+
+	td {
+		padding: 5px 5px;
+		vertical-align: top;
+	}
+	
+	.labelCell {
+		text-align: right;
+	}
+	
+	.temp {
+		font-size: 14px;
+		font-weight: bold;
+	}
+	
+	input {
+		margin-left: 5px;
+	}
+	
+	.cityLabel {
+		padding-top: 12px;
+	}
+	
+	.cityName {
+		font-size: 22px;
+		font-weight: bold;
+	}
+	
+	.conditionsLabel {
+		padding-top: 22px;
+	}
+</style>
+
+<div class="wrapper">
+	<div class="userInput">
+		Enter your zip code: <input type="text" maxlength="5" ng-model="model.zipCode" /><button id="btnGo" ng-click="goClicked();">Go</button>
+	</div>
+
+	<div class="instructions" ng-show="!model.hasResults">
+		Please enter a zip code to retrieve your weather results.
+	</div>
+	
+	<div ng-show="model.hasResults">
+		<table>
+			<tr>
+				<td class="labelCell cityLabel">City Name:</td>
+				<td class="cityName">{{result.name}}</td>
+			</tr>
+			
+			<tr>
+				<td class="labelCell conditionsLabel">Conditions:</td>
+				<td>
+					<img src="{{model.weatherUrl}}" /> {{result.weather[0].description}}
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="labelCell">Currently:</td>
+				<td class="currently">
+					{{result.main.temp}} &deg;F
+				</td>
+			</tr>
+		
+			<tr>
+				<td class="labelCell">Low:</td>
+				<td>
+					{{result.main.temp_min}} &deg;F
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="labelCell">High:</td>
+				<td>
+					{{result.main.temp_max}} &deg;F
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="labelCell">Wind Speed:</td>
+				<td>
+					{{result.wind.speed}}
+				</td>
+			</tr>
+			
+		</table>
+	</div>
+</div>
